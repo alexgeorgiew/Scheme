@@ -1,0 +1,10 @@
+(define (dectobin x)
+  (define (helper curr step answer)
+    (if (= curr 1)
+        (+ answer (* 1 step))
+        (helper (quotient curr 2) (* step 10) (+ answer (* (remainder curr 2) step)))
+        )
+    )
+  (if (= x 0) 0 (helper x 1 0))
+  
+  )
