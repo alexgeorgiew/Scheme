@@ -1,2 +1,2 @@
 # Scheme
-Tasks from homework
+Tasks from homework and practise with scheme
