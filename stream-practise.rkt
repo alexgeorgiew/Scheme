@@ -1,0 +1,26 @@
+#lang racket
+
+(define the-empty-stream '())
+(define (cons-stream h t) (cons h (delay t)))
+(define head car)
+(define (tail s) (force (cdr s)))
+(define empty-stream? null?)
+
+
+(define (stream-range-generator a b)
+  (if (> a b) '() (cons a (delay (stream-range-generator (+ a 1) b))))
+  )
+
+(define (stream-range a b) (stream-range-generator a b))
+(define range (stream-range 1 10))
+
+(define (stream-ref s n)
+  (if (= n 0) (head s) (stream-ref (tail s) (- n 1)))  
+  )
+
+(define (add2 x)
+  (+ x 2))
+
+(define (stream-map s f)
+ (if (empty-stream? s) '() (cons (f (car s)) (delay (stream-map (tail s) f))))
+  )
